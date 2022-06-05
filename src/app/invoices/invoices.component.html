@@ -1,0 +1,57 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Data</th>
+      <th scope="col">Numero</th>
+      <th scope="col">Anno</th>
+      <th scope="col">Importo</th>
+      <th scope="col">Stato</th>
+      <th scope="col">Cliente</th>
+    </tr>
+  </thead>
+
+  <tbody *ngFor="let invoice of invoices; let i = index">
+    <tr>
+      <th scope="row">{{ invoice.id }}</th>
+      <td>{{ invoice.data | date }}</td>
+      <td>{{ invoice.numero }}</td>
+      <td>{{ invoice.anno }}</td>
+      <td>{{ invoice.importo | currency :'EUR' }}</td>
+      <td>{{ invoice.stato.nome }}</td>
+      <td>{{ invoice.cliente.ragioneSociale }}</td>
+      <td><a class="btn btn-warning" [routerLink]="['/dettagliFattura/', invoice.id]" routerLinkActive="active" >Modifica</a></td>
+      <td>
+        <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#exampleModal" >Elimina</button>
+        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal" aria-labelledby="exampleModalTitle">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalTitle">Vuoi davvero eliminare la fattura di {{invoice.cliente.ragioneSociale}} ? </h5>
+              </div>
+              <div class="modal-body">
+                <p>Sei proprio sicuro???</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-primary btn-sm" data-dismiss="modal" type="button">Annulla</button>
+                <button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" (click)="canc(invoice.id, i)">Elimina</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<nav class="container" aria-label="Page navigation">
+  <ul class="pagination" id="sposta">
+    <li class="page-item" *ngIf="!resp?.first">
+      <a class="page-link" (click)="changePage(resp?.number - 1)"><i class="em em-arrow_backward" aria-role="presentation" aria-label="BLACK LEFT-POINTING TRIANGLE"></i></a>
+    </li>
+    <li class="page-item" *ngIf="!resp?.last">
+      <a class="page-link" (click)="changePage(resp?.number + 1)"><i class="em em-arrow_forward" aria-role="presentation" aria-label="BLACK RIGHT-POINTING TRIANGLE"></i></a>
+    </li>
+  </ul>
+</nav>

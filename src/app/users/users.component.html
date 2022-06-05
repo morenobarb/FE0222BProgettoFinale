@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">Roles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <th scope="row">{{ user.id }}</th>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td *ngFor="let item of user.roles">{{ item.roleName }}</td>
+    </tr>
+  </tbody>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item" *ngIf="!resp?.first">
+      <a class="page-link" (click)="changePage(resp.number - 1)"><i class="em em-arrow_backward" aria-role="presentation" aria-label="BLACK LEFT-POINTING TRIANGLE"></i></a>
+    </li>
+    <li class="page-item" *ngFor="let pag of numberPage; let p = index">
+      <a class="page-link" (click)="changePage(p)">{{ p + 1 }}</a>
+    </li>
+    <li class="page-item" *ngIf="!resp?.last">
+      <a class="page-link" (click)="changePage(resp.number + 1)"><i class="em em-arrow_forward" aria-role="presentation" aria-label="BLACK RIGHT-POINTING TRIANGLE"></i></a>
+    </li>
+  </ul>
+</nav>
+

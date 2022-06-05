@@ -1,0 +1,171 @@
+<div class="mt-2 container w-25 center">
+  <form [formGroup]="form" (submit)="modiClient(form)">
+    <h2>Modifica del cliente {{cliente.ragioneSociale}}</h2>
+    <div class="form-row">
+      <div class="form-group col">
+        <label>Ragione Sociale</label>
+        <input
+          formControlName="ragioneSociale"
+          name="ragioneSociale"
+          type="text"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>Partita IVA</label>
+        <input
+          formControlName="partitaIva"
+          type="number"
+          name="partitaIva"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>E-Mail</label>
+        <input
+          formControlName="email"
+          name="email"
+          type="email"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>Tipo cliente</label>
+        <select
+          formControlName="tipoCliente"
+          name="tipoCliente"
+          class="form-control"
+        >
+          <option selected>...</option>
+          <option>SRL</option>
+          <option>SPA</option>
+          <option>SAS</option>
+          <option>PA</option>
+        </select>
+      </div>
+
+      <div class="form-group col">
+        <label>PEC</label>
+        <input
+          formControlName="pec"
+          name="pec"
+          type="email"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>Telefono</label>
+        <input formControlName="telefono" type="text" class="form-control" />
+      </div>
+
+      <div class="form-group col">
+        <label>Nome contatto</label>
+        <input
+          formControlName="nomeContatto"
+          type="text"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>Cognome contatto</label>
+        <input
+          formControlName="cognomeContatto"
+          name="cognomeContatto"
+          type="text"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>Telefono contatto</label>
+        <input
+          formControlName="telefonoContatto"
+          name="telefonoContatto"
+          type="text"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group col">
+        <label>E-Mail contatto</label>
+        <input
+          formControlName="emailContatto"
+          name="emailContatto"
+          type="email"
+          class="form-control"
+        />
+      </div>
+
+      <div formGroupName="indirizzoSedeOperativa">
+        <div class="form-group col">
+          <label>Via </label>
+          <input
+            formControlName="via"
+            name="via"
+            type="text"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group col">
+          <label>Civico</label>
+          <input
+            formControlName="civico"
+            name="civico"
+            type="text"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group col">
+          <label>CAP</label>
+          <input
+            formControlName="cap"
+            name="cap"
+            type="number"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group col">
+          <label>Localitá</label>
+          <input
+            formControlName="localita"
+            name="localita"
+            type="text"
+            class="form-control"
+          />
+        </div>
+        <div formGroupName="comune">
+          <div class="form-group col">
+            <label>Comune</label>
+            <select formControlName="id" class="form-control" name="comune">
+              <option *ngFor="let comune of comuni" value="{{comune.id}}">
+                {{ comune.nome }}
+              </option>
+            </select>
+          </div>
+          <div formGroupName="provincia">
+            <div class="form-group col">
+              <label>Provincia</label>
+              <select
+                formControlName="id"
+                class="form-control"
+                name="provincia"
+              >
+                <option *ngFor="let provincia of province" value="{{provincia.id}}">
+                  {{ provincia.nome }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success my-2">Modifica</button>
+  </form>
+</div>

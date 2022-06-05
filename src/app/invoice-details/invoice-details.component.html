@@ -1,0 +1,41 @@
+<form #form="ngForm" (ngSubmit)="salva(form)">
+  <div class="card text-center ">
+    <div class="card-body ">
+      <p class="card-text">Importo: <strong>{{ invoice.importo | currency:'EUR' }}</strong></p>
+      <div class="card-text">
+        <p>Stato:</p>
+        <select name="stato" id="stato" ngModel>
+          <option value="">Scegli</option>
+          <option value="2">NON PAGATA</option>
+          <option value="1">PAGATA</option>
+        </select>
+      </div>
+      <p class="card-text mt-1">Numero fattura: <strong>{{ invoice.id }}</strong></p>
+      <p class="card-text">Data : <strong>{{ invoice.data | date }} </strong></p>
+      <div class=" mt-3 " >
+        <button type="submit" class="btn btn-success" >Salva modifiche</button>
+
+        <div class="it-example-modal">
+          <div class="modal" tabindex="-1" role="dialog" id="modal1" aria-labelledby="modal1Title" aria-describedby="modal1Description">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modal1Title">Procedura di modifica</h5>
+                </div>
+                <div class="modal-body">
+
+                  <p>Sei davvero sicuro di modificare lo stato del pagamento di {{invoice.ragioneSociale}} ?</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-primary btn-sm" type="button" data-dismiss="modal">Annulla</button>
+                  <button class="btn btn-success btn-sm" type="button">Conferma</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
